@@ -24,7 +24,7 @@ ________________________________________________________________________________
 - "127.0.0.1:8080/hello"  displays "Hello World" after 10 seconds;
 - "127.0.0.1:8080/redirect?url=/redirect_page" redirects to the 
 " 127.0.0.1:8080/redirect_page" and this page displays "Page was redirected";
-- "127.0.0.1:8080/status" displays all statistic*.
+- "127.0.0.1:8080/status" displays all statistic.
 ____________________________________________________________________________________________________________________________
 
  Project build   and "jar"-package  can be done using IDE or Maven (because of  use Maven support in current project).
@@ -47,9 +47,9 @@ ________________________________________________________________________________
 To stop process type "Ctrl+C"
 ____________________________________________________________________________________________________________________________
 
-* The table with logs from "status" page doesn't display speed (b/s). Using "ChannelTrafficShapingHandler.class" to compute
+!!! The table with logs from "status" page doesn't display speed (b/s). Using "ChannelTrafficShapingHandler.class" to compute
 traffic I've faced the problem to retrieve real "lastWriteThroughput"/"lastReadThroughput" from TrafficCounter.
- It was always "0" in all circumstances. Unfortunately, I haven't resolved this issue yet.
+ It was always "0" in all circumstances. Unfortunately, I haven't resolved this issue yet. !!!
 
 The required command "ab –c 100 –n 10000 ..." was transformed to "ab -k –c 100 –n 10000 ..." to support persistent connections 
 with "-k" switch. 
