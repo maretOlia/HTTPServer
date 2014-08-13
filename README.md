@@ -3,7 +3,7 @@ HTTPServer
 
 HTTPServer is simple netty (http://netty.io/) application which allow client to make simple requests to the server
 and display the trafic statistic.
---------------------------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________
 Project implementation features:
 
 1. Classes, which represent URL-handlers, based on the MVC ideology (Model View Controller).
@@ -19,13 +19,13 @@ Project implementation features:
 3. For counting traffic to the "ChannelPipeline" was added "ChannelTrafficShapingHandler" to compute traffic per channel.
 
 4. Also, the statistic storage represents by "Statistic.class" which has static methods for required computations.
-----------------------------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________
 
 - "127.0.0.1:8080/hello"  displays "Hello World" after 10 seconds;
 - "127.0.0.1:8080/redirect?url=/redirect_page" redirects to the 
 " 127.0.0.1:8080/redirect_page" and this page displays "Page was redirected";
 - "127.0.0.1:8080/status" displays all statistic*.
-----------------------------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________
 
  Project build   and "jar"-package  can be done using IDE or Maven (because of  use Maven support in current project).
 
@@ -39,13 +39,13 @@ After this, IT IS NECESSARY TO ADD to MANIFEST.MF file from "jar" package next l
   
  "package" phase recursively invokes previews phases: "validate" ,"compile" and "test". Therefore, the project will be build 
  and all unit-test will run (but we haven't any at this moment).
-----------------------------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________
  To run application, we can use our IDE or ran "main" method from the command prompt. To do the second thing:
  - go to folder where "jar" file is placed and type next:   "java -jar HTTPServer-1.0-SNAPSHOT.jar"
  where "HTTPServer-1.0-SNAPSHOT" is the name of our "jar"
-----------------------------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________
 To stop process type "Ctrl+C"
-----------------------------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________
 
 * The table with logs from "status" page doesn't display speed (b/s). Using "ChannelTrafficShapingHandler.class" to compute
 traffic I've faced the problem to retrieve real "lastWriteThroughput"/"lastReadThroughput" from TrafficCounter.
