@@ -43,7 +43,7 @@ ________________________________________________________________________________
  To run application, we can use our IDE or ran "main" method from the command prompt. To do the second thing:
  - go to folder where "jar" file is placed and type next:   "java -jar HTTPServer-1.0-SNAPSHOT.jar"
  where "HTTPServer-1.0-SNAPSHOT" is the name of our "jar"
-____________________________________________________________________________________________________________________________
+
 To stop process type "Ctrl+C"
 ____________________________________________________________________________________________________________________________
 
