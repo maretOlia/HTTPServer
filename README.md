@@ -6,8 +6,7 @@ and display the trafic statistic.
 ____________________________________________________________________________________________________________________________
 Project implementation features:
 
-1. Classes, which represent URL-handlers, based on the MVC ideology (Model View Controller).
-    This concept is implemented using specific "@Mapping" annotations for such classes.
+1. Classes, which represent URL-handlers are mapping by specific "@Mapping" annotations for such classes.
     
     Current classes was placed in the same separate package and retrieving using "Reflections" library
     (code.google.com/p/reflections) during server bootstrapping to create those instances.
