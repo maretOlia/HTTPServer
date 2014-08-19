@@ -2,7 +2,6 @@ package handlers.impl;
 
 import handlers.annotations.Mapping;
 import handlers.api.URIHandler;
-import io.netty.handler.codec.http.HttpRequest;
 import statistic.Logger;
 import statistic.RequestsCounter;
 import statistic.Statistic;
@@ -20,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class StatusHandler implements URIHandler {
 
     @Override
-    public void handle(HttpRequest request, StringBuilder builder) {
+    public void handle(StringBuilder builder) {
         builder.append("------------------------STATISTIC------------------------------\n\n");
 
         builder.append("Total number of requests: " + Statistic.REQUESTS_COUNTER + "\n\n");

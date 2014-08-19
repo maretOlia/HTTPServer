@@ -20,6 +20,7 @@ import static io.netty.handler.codec.http.HttpHeaders.Names.*;
 import static io.netty.handler.codec.http.HttpHeaders.isKeepAlive;
 import static io.netty.handler.codec.http.HttpResponseStatus.*;
 import static io.netty.handler.codec.http.HttpVersion.*;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * ServerHandler represents main logic of application with
@@ -82,7 +83,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
                 Statistic.countRedirectRequests(redirectURL);
 //              refresh logs
                 refreshLogs(ctx, ip, userRequest);
-                //              redirect client
+//              redirect client
                 writeResponseOnRedirect(ctx);
 //              refresh statistic
                 Statistic.refreshStatistic(ip, userRequest);
@@ -93,14 +94,23 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 //          Looking for handler on this request
             URIHandler newHandler = allHandlers.get(userRequest);
             if (newHandler != null) {
-                newHandler.handle(request, builder);
-//              preparing and writing response
-                writeResponseOnSuccess(ctx);
+                newHandler.handle(builder);
 
 //              refresh statistic
                 Statistic.refreshStatistic(ip, userRequest);
 //              refresh logs
                 refreshLogs(ctx, ip, userRequest);
+
+//              checking if this request need a delay
+                if (userRequest.equals("/hello")) {
+//              retrieving EventLoop
+                    EventLoop eventExecutors = channel.eventLoop();
+//              creating non-blocking delay with 10 seconds
+                    eventExecutors.schedule(new DelayedResponse(ctx, builder), 10, SECONDS);
+                    return;
+                }
+//              preparing and writing response
+                writeResponseOnSuccess(ctx);
 
             } else {
                 builder.append("This web-page is not available");
