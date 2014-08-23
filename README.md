@@ -1,18 +1,18 @@
 HTTPServer
 ==========
 
-HTTPServer is simple netty (http://netty.io/) application which allow client to make simple requests to the server
+HTTPServer is the simple netty (http://netty.io/) application which allow client to make requests to the server
 and display the trafic statistic.
 ____________________________________________________________________________________________________________________________
 Project implementation features:
 
-1. Classes, which represent URL-handlers are mapping by specific "@Mapping" annotations for such classes.
+1. Classes, which represent URL-handlers are mapped by specific "@Mapping" annotations for such classes.
     
     Current classes was placed in the same separate package and retrieving using "Reflections" library
     (code.google.com/p/reflections) during server bootstrapping to create those instances.
 
 2.  In "ChannelPipeline" was added "readTimeoutHandler" to close the connection after 70 seconds without client activity.
-     After 70 seconds, ReadTimeoutException will be "throw" and handled in "ServerHandler" in "exceptionCaught" method. 
+     After 70 seconds, ReadTimeoutException will "throw" and will be handled in "ServerHandler" in "exceptionCaught" method. 
      Until that time connection steel persistent. 
 
 3. For counting traffic to the "ChannelPipeline" was added "ChannelTrafficShapingHandler" to compute traffic per channel.
@@ -28,7 +28,7 @@ ________________________________________________________________________________
 
  Project build   and "jar"-package  can be done using IDE or Maven (because of  use Maven support in current project).
 
-To make a "jar" with all dependencies we must define in "pom" file special "Maven Shade Plugin", which grabs all dependencies.
+To make a "jar" with all dependencies we must define in the "pom" file special "Maven Shade Plugin", which will grab all dependencies.
 Next:
   - go to project the folder on command prompt/terminal;
   - type maven life/cycle command: "mvn clean package"
@@ -39,11 +39,11 @@ After this, IT IS NECESSARY TO ADD to MANIFEST.MF file from "jar" package next l
  "package" phase recursively invokes previews phases: "validate" ,"compile" and "test". Therefore, the project will be build 
  and all unit-test will run (but we haven't any at this moment).
 ____________________________________________________________________________________________________________________________
- To run application, we can use our IDE or ran "main" method from the command prompt. To do the second thing:
- - go to folder where "jar" file is placed and type next:   "java -jar HTTPServer-1.0-SNAPSHOT.jar"
- where "HTTPServer-1.0-SNAPSHOT" is the name of our "jar"
+ To run the application, we can use our IDE or run "main" method from the command prompt. To do the second thing:
+ - go to folder where "jar" file is placed and type the next:   "java -jar HTTPServer-1.0-SNAPSHOT.jar"
+ where "HTTPServer-1.0-SNAPSHOT" is the name of our "jar".
 
-To stop process type "Ctrl+C"
+To stop process type "Ctrl+C".
 ____________________________________________________________________________________________________________________________
 
 !!! The table with logs from "status" page doesn't display speed (b/s). Using "ChannelTrafficShapingHandler.class" to compute
